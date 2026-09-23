@@ -391,7 +391,7 @@ render_scoped_limits() {
         [ -z "$name" ] && continue
         pct=$(printf "%.0f" "$pct")
         out+="${sep}${white}${name}${reset} $(usage_color "$pct")${pct}%${reset}"
-    done < <(echo "$data" | jq -r '.limits[]? | select(.kind == "weekly_scoped" and .is_active != false)
+    done < <(echo "$data" | jq -r '.limits[]? | select(.kind == "weekly_scoped")
         | [(.scope.model.display_name // "scoped"), (.percent // 0)] | @tsv' 2>/dev/null)
 }
 
